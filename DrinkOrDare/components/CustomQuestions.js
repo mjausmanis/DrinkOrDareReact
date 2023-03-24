@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Button, View, Text } from "react-native";
-export default function Options({ navigation }) {
+export default function CustomQuestions({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Options</Text>
+      <Text>Custom Questions</Text>
       <Button
-        title="Go to Main menu"
+        title="Go to MainMenu"
         onPress={() => navigation.navigate("MainMenu")}
       />
     </View>

@@ -9,6 +9,14 @@ export default function MainMenu({ navigation }) {
         title="Go to Options"
         onPress={() => navigation.navigate("Options")}
       />
+      <Button
+        title="Go to Player Input"
+        onPress={() => navigation.navigate("PlayerInput")}
+      />
+      <Button
+        title="Go to CustomQuestions"
+        onPress={() => navigation.navigate("CustomQuestions")}
+      />
     </View>
   );
 }
