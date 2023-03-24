@@ -14,7 +14,10 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+      }}>
         <Stack.Screen name="MainMenu" component={MainMenu} />
         <Stack.Screen name="Options" component={Options} />
         <Stack.Screen name="PlayerInput" component={PlayerInput} />
