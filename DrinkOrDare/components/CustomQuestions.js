@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { Button, View, Text, TextInput, Keyboard } from "react-native";
+import { Button, View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STORED_DARES_KEY = "storedDares";
@@ -30,7 +30,7 @@ export default function CustomQuestions({ navigation }) {
 
     if (dares.length >= 2) {
       alert(
-        "For a monthly subscription of 15.99$, you can save an unlimited amount of dares!"
+        "For a monthly subscription of 420$, you can save an unlimited amount of dares!"
       );
       return;
     }
@@ -56,27 +56,63 @@ export default function CustomQuestions({ navigation }) {
     }
   }
 
+  function CircleButton({ title, onPress }) {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={{
+          backgroundColor: "#504A42",
+          borderRadius: 50,
+          width: 150,
+          height: 50,
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 20
+        }}
+      >
+        <Text style={{ color: "#FFEBA4", fontWeight: "bold", fontSize: 16 }}>
+          {title}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>Custom Questions</Text>
-      <View style={{ marginBottom: 20 }}>
-        <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-          onChangeText={setNewDare}
-          value={newDare}
-          placeholder="Enter a new dare"
-        />
-        <Button title="Save Dare" onPress={handleSaveDare} />
-      </View>
-      {dares.length > 0 && (
-        <View>
-          <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: 10 }}>Saved Dares:</Text>
-          {dares.map((dare, index) => (
-            <Text key={index}>{dare}</Text>
-          ))}
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#292623"}}>
+      
+      <View style={{marginTop: 150,  marginBottom: 20, alignItems: "center" }}>
+        <Text style={{ color: "#FFEBA4", fontSize: 20, fontWeight: "bold", marginBottom: 20, textAlign: "center" }}>Custom Questions</Text>
+        
+        <View style={{ marginBottom: 20, marginTop: 50 }}>
+          <TextInput
+            style={{ minHeight: 35, width: 150, borderColor: "#504A42", borderWidth: 3, borderRadius: 25, padding: 10, color: "#FFEBA4", textAlign: "center"}}
+            onChangeText={setNewDare}
+            value={newDare}
+            placeholderTextColor="#FFEBA4"
+            placeholder="Enter a dare here"
+            multiline={true}
+          />
         </View>
-      )}
-      <Button title="Delete Dares" onPress={handleDeleteDares} />
+        
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <CircleButton title="Save Dare" onPress={handleSaveDare} />
+          <CircleButton title="Delete dares" onPress={handleDeleteDares}/>
+        </View>
+      </View>
+      
+      <View style={{ flex: 1, alignItems: "center" }}>
+        {dares.length > 0 && (
+          <View>
+            <Text style={{color: "#FFEBA4", fontSize: 16, fontWeight: "bold", marginBottom: 10 }}>Saved Dares:</Text>
+            {dares.map((dare, index) => (
+              <Text style={{ color: "#FFEBA4" }} key={index}>
+                {dare}
+              </Text>
+            ))}
+          </View>
+        )}
+      </View>
+      
     </View>
   );
 }
