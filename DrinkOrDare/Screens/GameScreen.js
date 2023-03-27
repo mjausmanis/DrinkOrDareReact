@@ -43,11 +43,10 @@ export default function GameScreen({ navigation }) {
   const [currentImage, setCurrentImage] = useState("");
   const [currentColor, setCurrentColor] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState("");
-
   useEffect(() => {
     generateQuestion();
     setCurrentImage(CustomImage);
-    setCurrentPlayer(0);
+    setCurrentPlayer(0)
   }, []);
 
 
@@ -161,12 +160,12 @@ export default function GameScreen({ navigation }) {
       </View>
       <View style={styles.buttons}>
         <MyButton
-          title="Generate Question"
+          title="Reroll"
           onPress={() => generateQuestion()}
         />
         <MyButton
           title="Go to Scoreboard"
-          onPress={() => navigation.navigate("Scoreboard", {playerNames: playerNames})}
+          onPress={() => navigation.navigate("Scoreboard", { playerNames: playerNames })}
         />
       </View>
     </View>

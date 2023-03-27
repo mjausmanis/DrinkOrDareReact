@@ -8,13 +8,25 @@ export default function Scoreboard({ navigation }) {
 
   const route = useRoute();
   const { playerNames } = route.params;
-  console.log(playerNames)
+
+
+  function next(){
+    navigation.navigate("GameScreen", {playerNames: playerNames})
+  }
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text style={{color: colors.text}}>Scoreboard</Text>
+      <View style={{flexDirection: 'column'}}>
+        {playerNames.map((name, index) => (
+          <View style={{flexDirection: 'row'}}>
+            <Text key={index}>{name}</Text>
+          </View>
+        ))}
+      </View>
       <MyButton
-        title="Go to MainMenu"
-        onPress={() => navigation.navigate("MainMenu")}
+        title="Continue"
+        onPress={next}
       />
     </View>
   );
