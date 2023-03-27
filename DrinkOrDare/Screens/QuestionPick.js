@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, Switch } from "react-native";
 import Toast from "react-native-root-toast";
 import MyButton from "../components/MyButton";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useRoute } from "@react-navigation/native";
 
 export default function QuestionPick({ navigation }) {
     
     const { colors } = useTheme();
+
+    const route = useRoute();
+    const { playerNames } = route.params;
 
     const [trueIsChecked, trueSetChecked] = useState(false);
     const [dareIsChecked, dareSetChecked] = useState(false);
@@ -23,7 +26,7 @@ export default function QuestionPick({ navigation }) {
 
     function saveSelection() {
         if (typeArray.includes(true) && ratingArray.includes(true)) {
-            navigation.navigate("GameScreen", {selectedTypes: typeArray, selectedRatings: ratingArray });
+            navigation.navigate("GameScreen", {selectedTypes: typeArray, selectedRatings: ratingArray, playerNames: playerNames});
         } else {
             let toast = Toast.show('Please select at least one type and one rating.', {
                 duration: Toast.durations.SHORT,

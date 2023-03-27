@@ -13,7 +13,6 @@ import { Audio } from "expo-av";
 import {View, StyleSheet, Text, Image} from "react-native";
 
 const StartupScreen = ({ navigation }) => {
-
   useEffect(() => {
     async function playSound() {
       const { sound } = await Audio.Sound.createAsync(
@@ -40,6 +39,7 @@ export default function App() {
   const [theme, setTheme] = useState('Light');
   const themeData = { theme, setTheme };
   const [sound, setSound] = useState();
+  
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
       require("./assets/music.mp3")
@@ -58,6 +58,7 @@ export default function App() {
       }
     };
   }, []);
+  
 
   return (
     <ThemeContext.Provider value={themeData}>

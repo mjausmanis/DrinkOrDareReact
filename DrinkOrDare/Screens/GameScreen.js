@@ -17,9 +17,10 @@ export default function GameScreen({ navigation }) {
   const { colors } = useTheme();
 
   const route = useRoute();
-  const { selectedTypes, selectedRatings } = route.params;
+  const { selectedTypes, selectedRatings, playerNames } = route.params;
   const apiEnds = [ 'v1/truth', 'api/dare', 'api/wyr', 'api/nhie', 'api/paranoia', 'custom'];
   const ratings = ['pg', 'pg13', 'r'];
+
   
   const Images = {
     TRUTH: TruthImage,
@@ -38,6 +39,7 @@ export default function GameScreen({ navigation }) {
     Custom: '#E4C336'
   }
 
+  const [currentPlayer, setCurrentPlayer] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [currentColor, setCurrentColor] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState("");
@@ -45,6 +47,7 @@ export default function GameScreen({ navigation }) {
   useEffect(() => {
     generateQuestion();
     setCurrentImage(CustomImage);
+    setCurrentPlayer(0);
   }, []);
 
 
@@ -148,7 +151,7 @@ export default function GameScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.playerCard}>
-        <Text style={styles.player}>Player 1</Text>
+        <Text style={styles.player}>{playerNames[currentPlayer]}</Text>
       </View>
       <View style={styles.cardBorder}>
         <View style={styles.questionCard}>
@@ -163,7 +166,7 @@ export default function GameScreen({ navigation }) {
         />
         <MyButton
           title="Go to Scoreboard"
-          onPress={() => navigation.navigate("Scoreboard")}
+          onPress={() => navigation.navigate("Scoreboard", {playerNames: playerNames})}
         />
       </View>
     </View>

@@ -17,6 +17,7 @@ export default function MainMenu({ navigation }) {
     title: {
       color: colors.text,
       fontSize: 50,
+      fontWeight: 'bold',
       marginBottom: 150
     },
     buttons: {

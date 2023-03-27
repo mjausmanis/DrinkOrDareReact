@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { View, Text, Keyboard, TextInput, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Keyboard, TextInput, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import Toast from "react-native-root-toast";
 import MyButton from "../components/MyButton";
 import { useTheme } from "@react-navigation/native";
 
@@ -9,7 +10,29 @@ export default function PlayerInput({ navigation }) {
   const [inputs, setInputs] = useState(['']);
 
   const addInput = () => {
-    setInputs([...inputs, '']);
+    if (inputs.length < 20) {
+      setInputs([...inputs, '']);
+    } else {
+      let toast = Toast.show("Can't have more than 20 players!", {
+          duration: Toast.durations.SHORT,
+      });
+    }
+  }
+
+  function saveNames() {
+    var filtered = []; 
+    for ( i in inputs) {
+      if (inputs[i] != "") {
+        filtered.push(inputs[i])
+      }
+    }
+    if (filtered.length > 0) {
+      navigation.navigate("QuestionPick", {playerNames: filtered})
+    } else {
+      let toast = Toast.show("You need to input at least 1 player name!", {
+        duration: Toast.durations.SHORT,
+      });
+    }
   }
 
   const styles = StyleSheet.create({
@@ -22,7 +45,8 @@ export default function PlayerInput({ navigation }) {
     title: {
       color: colors.text,
       fontSize: 30,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      marginBottom: 50
     },
     scroll: {
       maxHeight: 250 
@@ -34,7 +58,23 @@ export default function PlayerInput({ navigation }) {
         borderRadius: 25, 
         padding: 10, 
         color: colors.text, 
-        textAlign: "center"}
+        textAlign: "center"
+    },
+    roundButton: { 
+      alignItems: "center", 
+      width: 50, 
+      height: 50, 
+      borderRadius: 50, 
+      backgroundColor: colors.buttonBackground, 
+      justifyContent: 'center',
+      marginTop: 15,
+      marginBottom: 5
+    },
+    plus: {
+      color: colors.text, 
+      fontSize: 25, 
+      fontWeight: "bold", 
+    }
 
   });
 
@@ -62,19 +102,16 @@ export default function PlayerInput({ navigation }) {
             </View>
           ))}
         </ScrollView>
-        <MyButton
-          title="Add field"
+        <TouchableOpacity
+          style = {styles.roundButton}
           onPress = {addInput}>
-        </MyButton>
-        </View>
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity>
+      </View>
       <MyButton
         title="Go to QuestionPick"
-        onPress={() => navigation.navigate("QuestionPick")}
+        onPress={saveNames}
       />
-      <MyButton
-        title= "Back to start"
-        onPress={() => navigation.navigate("MainMenu")}
-      />
-      </View>
+    </View>
   );
 }
