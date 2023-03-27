@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
-import { View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
+import { StyleSheet, View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyButton from "../components/MyButton";
 import { useTheme } from "@react-navigation/native";
 
 const STORED_DARES_KEY = "storedDares";
@@ -8,7 +9,8 @@ const STORED_DARES_KEY = "storedDares";
 export default function CustomQuestions({ navigation }) {
   const [newDare, setNewDare] = useState("");
   const [dares, setDares] = useState([]);
-
+  const { colors } = useTheme();
+  
   useEffect(() => {
     loadDares();
   }, []);
@@ -79,14 +81,12 @@ export default function CustomQuestions({ navigation }) {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#292623"}}>
-      
-      <View style={{marginTop: 150,  marginBottom: 20, alignItems: "center" }}>
-        <Text style={{ color: "#FFEBA4", fontSize: 20, fontWeight: "bold", marginBottom: 20, textAlign: "center" }}>Custom Questions</Text>
-        
+    <View style={[styles.container]}>
+      <View style={[styles.container]}>
+        <Text style={{ color: colors.text, fontSize: 20, fontWeight: "bold", marginBottom: 20, textAlign: "center" }}>Custom Questions</Text>
         <View style={{ marginBottom: 20, marginTop: 50 }}>
           <TextInput
-            style={{ minHeight: 35, width: 150, borderColor: "#504A42", borderWidth: 3, borderRadius: 25, padding: 10, color: "#FFEBA4", textAlign: "center"}}
+            style={{ minHeight: 35, width: 150, borderColor: "#504A42", borderWidth: 3, borderRadius: 25, padding: 10, color: colors.text, textAlign: "center"}}
             onChangeText={setNewDare}
             value={newDare}
             placeholderTextColor="#FFEBA4"
@@ -96,24 +96,31 @@ export default function CustomQuestions({ navigation }) {
         </View>
         
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <CircleButton title="Save Dare" onPress={handleSaveDare} />
-          <CircleButton title="Delete dares" onPress={handleDeleteDares}/>
+          <MyButton title="Save Dare" onPress={handleSaveDare} />
+          <MyButton title="Delete dares" onPress={handleDeleteDares}/>
         </View>
       </View>
-      
       <View style={{ flex: 1, alignItems: "center" }}>
         {dares.length > 0 && (
           <View>
-            <Text style={{color: "#FFEBA4", fontSize: 16, fontWeight: "bold", marginBottom: 10 }}>Saved Dares:</Text>
+            <Text style={{color: colors.text, fontSize: 16, fontWeight: "bold", marginBottom: 10 }}>Saved Dares:</Text>
             {dares.map((dare, index) => (
-              <Text style={{ color: "#FFEBA4" }} key={index}>
+              <Text style={{ color: colors.text }} key={index}>
                 {dare}
               </Text>
             ))}
           </View>
         )}
       </View>
-      
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: "center", 
+    justifyContent: "center"
+  }
+});
+
