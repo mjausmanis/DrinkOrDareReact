@@ -18,8 +18,8 @@ export default function QuestionPick({ navigation }) {
     const [pg13RatingIsChecked, pg13RatingSetChecked] = useState(false);
     const [rRatingIsChecked, rRatingSetChecked] = useState(false);
 
-    typeArray = [trueIsChecked, dareIsChecked, wyrIsChecked, neverIsChecked, parIsChecked, custIsChecked]
-    ratingArray = [pgRatingIsChecked, pg13RatingIsChecked, rRatingIsChecked]
+    const typeArray = [trueIsChecked, dareIsChecked, wyrIsChecked, neverIsChecked, parIsChecked, custIsChecked]
+    const ratingArray = [pgRatingIsChecked, pg13RatingIsChecked, rRatingIsChecked]
 
     function saveSelection() {
         if (typeArray.includes(true) && ratingArray.includes(true)) {
@@ -85,6 +85,9 @@ export default function QuestionPick({ navigation }) {
             marginBottom: 20,
             justifyContent: 'center'
         },
+        buttonView: {
+            justifyContent: 'center'
+        }
         });
 
     return (
@@ -174,7 +177,7 @@ export default function QuestionPick({ navigation }) {
                     <Text style={styles.checkBoxLabel}>R</Text>
                 </View>
             </View>
-            <View>
+            <View style={styles.buttonView}>
                 <MyButton
                     title="Start Game"
                     onPress={saveSelection}

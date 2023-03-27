@@ -54,17 +54,15 @@ export default function Options(props) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{color: colors.text, fontSize: 16, fontWeight: "bold"}}>Options</Text>
+      <Text style={{color: colors.text, fontSize: 50, fontWeight: "bold", marginBottom: 50}}>Options</Text>
       <MyButton 
         title="Switch theme"
         onPress={() => setTheme(theme === 'Light' ? 'Dark' : 'Light')}
       />
-      <View style={{ marginBottom: 20 }}></View>
       <MyButton
         title={isMusicButtonOn ? "Music On" : "Music Off"}
         onPress={toggleMusic}
       />
-      <View style={{ marginBottom: 20 }}></View>
       <MyButton
         title="Go to Main menu"
         onPress={() => props.navigation.navigate("MainMenu")}

@@ -21,9 +21,17 @@ export default function PlayerInput({ navigation }) {
     },
     title: {
       color: colors.text,
-      fontSize: 16,
+      fontSize: 30,
       fontWeight: "bold"
     },
+    textInput: { minHeight: 35,
+        width: 150,
+        borderColor: "#504A42", 
+        borderWidth: 3, 
+        borderRadius: 25, 
+        padding: 10, 
+        color: colors.text, 
+        textAlign: "center"}
 
   });
 
@@ -41,21 +49,20 @@ export default function PlayerInput({ navigation }) {
             const newInputs = [...inputs];
             newInputs[index] = text;
             setInputs(newInputs);
-            
           }}
           
-          style={{ minHeight: 35, width: 150, borderColor: "#504A42", borderWidth: 3, borderRadius: 25, padding: 10, color: "#FFEBA4", textAlign: "center"}}
-          placeholderTextColor="#FFEBA4"
-          placeholder="enter name"
+          style={styles.textInput}
+          placeholderTextColor={colors.text}
+          placeholder="Enter name"
           multiline={true}
         /> 
         </View>
       ))}
-        <TouchableOpacity
+        <MyButton
           style = {{ flex: 1, alignItems: "center" }}
           onPress = {addInput}>
-          <Text style={{color: "#FFEBA4", fontSize: 16, fontWeight: "bold", marginTop: 10 }}>Add fiel</Text>
-        </TouchableOpacity>
+          title="Add field"
+        </MyButton>
         </View>
       <MyButton
         title="Go to QuestionPick"

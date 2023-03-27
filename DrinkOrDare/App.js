@@ -13,6 +13,7 @@ import { Audio } from "expo-av";
 import {View, StyleSheet, Text, Image} from "react-native";
 
 const StartupScreen = ({ navigation }) => {
+
   useEffect(() => {
     async function playSound() {
       const { sound } = await Audio.Sound.createAsync(

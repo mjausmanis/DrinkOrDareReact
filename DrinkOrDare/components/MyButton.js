@@ -5,28 +5,34 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 const MyButton = ({ title, onPress }) => {
     const { colors } = useTheme();
 
+    const styles = StyleSheet.create({
+        button: {
+            height: 60,
+            width: 150,
+            padding: 10,
+            margin: 10,
+            borderRadius: 15,
+            backgroundColor: colors.buttonBackground,
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        buttonText: {
+            color: colors.text,
+            fontWeight: "bold",
+            textAlign: "center",
+        },
+    });
+    
     return (
         <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.buttonBackground }]}
+            style={styles.button}
             onPress={onPress}
             >
-            <Text style={[styles.buttonText, { color: colors.text }]}>
+            <Text style={styles.buttonText}>
                 {title}
             </Text>
         </TouchableOpacity>
     );
 };
-
-const styles = StyleSheet.create({
-    button: {
-        padding: 10,
-        margin: 5,
-        borderRadius: 15,
-    },
-    buttonText: {
-        fontWeight: "bold",
-        textAlign: "center",
-    },
-});
 
 export default MyButton;

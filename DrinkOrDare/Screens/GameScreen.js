@@ -87,7 +87,6 @@ export default function GameScreen({ navigation }) {
           setCurrentQuestion(data.question);
           setCurrentImage(Images[data.type])
           setCurrentColor(borderColors[data.type])
-          console.log(data.type)
         });
     }
   }

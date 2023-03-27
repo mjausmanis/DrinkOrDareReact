@@ -7,30 +7,41 @@ export default function MainMenu({ navigation }) {
 
   const { colors } = useTheme();
 
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1, 
+      alignItems: "center", 
+      justifyContent: "center"
+    },
+    title: {
+      color: colors.text,
+      fontSize: 50,
+      marginBottom: 150
+    },
+    buttons: {
+      width: 50
+    }
+  });
+
   return (
-      <View style={[styles.container]}>
-        <Text style={{color: colors.text}}>DrinkOrDare</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Drink Or Dare</Text>
         <MyButton
-          title="Go to Player Input"
+          title="Play game"
           onPress={() => navigation.navigate("PlayerInput")}
         />
         <MyButton
-          title="Go to Options"
+          title="Options"
           onPress={() => navigation.navigate("Options")}
         />
         <MyButton
-          title="Go to CustomQuestions"
+          title="Custom questions"
           onPress={() => navigation.navigate("CustomQuestions")}
         />
       </View>
   );
+  
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    alignItems: "center", 
-    justifyContent: "center"
-  }
-});
