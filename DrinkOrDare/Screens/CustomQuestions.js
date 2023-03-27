@@ -1,8 +1,9 @@
-import React, { Component, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyButton from "../components/MyButton";
 import { useTheme } from "@react-navigation/native";
+
 
 const STORED_DARES_KEY = "storedDares";
 
@@ -57,27 +58,6 @@ export default function CustomQuestions({ navigation }) {
     } catch (error) {
       console.error("Failed to delete saved dares:", error);
     }
-  }
-
-  function CircleButton({ title, onPress }) {
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        style={{
-          backgroundColor: "#504A42",
-          borderRadius: 50,
-          width: 150,
-          height: 50,
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 20
-        }}
-      >
-        <Text style={{ color: "#FFEBA4", fontWeight: "bold", fontSize: 16 }}>
-          {title}
-        </Text>
-      </TouchableOpacity>
-    );
   }
 
   return (
