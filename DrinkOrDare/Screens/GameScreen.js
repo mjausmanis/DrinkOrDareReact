@@ -41,6 +41,7 @@ export default function GameScreen({ navigation }) {
 
   useEffect(() => {
     generateQuestion();
+    setCurrentImage(CustomImage);
   }, []);
 
 
