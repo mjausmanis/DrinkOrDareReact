@@ -8,6 +8,9 @@ import WyrImage from "../assets/WYR.png";
 import NeverImage from "../assets/Never.png";
 import ParanoiaImage from "../assets/Paranoia.png";
 import CustomImage from "../assets/Custom.png";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import CustomQuestions from './CustomQuestions';
+
 
 export default function GameScreen({ navigation }) {
 
@@ -45,7 +48,7 @@ export default function GameScreen({ navigation }) {
   }, []);
 
 
-  function generateQuestion() {
+  async function generateQuestion() {
     selectedEnds = []
     chosenRatings = []
     endValue = 0
@@ -67,9 +70,16 @@ export default function GameScreen({ navigation }) {
 
     if (selectedEnds[endValue] == 'custom') {
       //take from custom questions
-      setCurrentQuestion('Custom question')
-      setCurrentImage(Images['Custom'])
-      setCurrentColor(borderColors['Custom'])
+      const storedDares = await AsyncStorage.getItem("storedDares");
+      if (storedDares !== null) {
+        const customQuestions = JSON.parse(storedDares);
+        const randomIndex = Math.floor(Math.random() * customQuestions.length);
+        setCurrentQuestion(customQuestions[randomIndex]);
+        setCurrentImage(Images['Custom'])
+        setCurrentColor(borderColors['Custom'])
+      } else {
+        setCurrentQuestion('No custom questions available')
+      }
     } else {
       fetch(`https://api.truthordarebot.xyz/${selectedEnds[endValue]}?rating=${chosenRatings[ratingValue]}`)
         .then(response => response.json())
