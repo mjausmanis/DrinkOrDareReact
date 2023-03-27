@@ -69,7 +69,7 @@ export default function CustomQuestions({ navigation }) {
             style={{ minHeight: 35, width: 150, borderColor: "#504A42", borderWidth: 3, borderRadius: 25, padding: 10, color: colors.text, textAlign: "center"}}
             onChangeText={setNewDare}
             value={newDare}
-            placeholderTextColor="#FFEBA4"
+            placeholderTextColor= {colors.text}
             placeholder="Enter a dare here"
             multiline={true}
           />
