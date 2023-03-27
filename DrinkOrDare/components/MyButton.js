@@ -20,7 +20,8 @@ const MyButton = ({ title, onPress }) => {
 const styles = StyleSheet.create({
     button: {
         padding: 10,
-        borderRadius: 5,
+        margin: 5,
+        borderRadius: 15,
     },
     buttonText: {
         fontWeight: "bold",
