@@ -1,22 +1,19 @@
-import { ThemeProvider } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import ThemeContext from "../Theme/ThemeContext";
 
 const MyButton = ({ title, onPress }) => {
-    const { theme } = useContext(ThemeContext);
+    const { colors } = useTheme();
 
     return (
-        <ThemeProvider>
-            <TouchableOpacity
-                style={[styles.button, { backgroundColor: theme.buttonColor }]}
-                onPress={onPress}
-                >
-                <Text style={[styles.buttonText, { color: theme.textColor }]}>
-                    {title}
-                </Text>
-            </TouchableOpacity>
-        </ThemeProvider>
+        <TouchableOpacity
+            style={[styles.button, { backgroundColor: colors.buttonBackground }]}
+            onPress={onPress}
+            >
+            <Text style={[styles.buttonText, { color: colors.text }]}>
+                {title}
+            </Text>
+        </TouchableOpacity>
     );
 };
 

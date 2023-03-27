@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
-import { Button, View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
+import { View, Text, TextInput, Keyboard, TouchableOpacity} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from "@react-navigation/native";
 
 const STORED_DARES_KEY = "storedDares";
 

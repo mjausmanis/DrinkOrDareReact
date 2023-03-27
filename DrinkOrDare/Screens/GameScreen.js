@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useRoute } from "@react-navigation/native"
-import { StyleSheet, Button, View, Text } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { useRoute, useTheme } from "@react-navigation/native"
+import { StyleSheet, View, Text } from "react-native";
+import MyButton from "../components/MyButton";
 
 export default function GameScreen({ navigation }) {
   const route = useRoute();
   const { selectedTypes, selectedRatings } = route.params
   const apiEnds = [ 'v1/truth', 'api/dare', 'api/wyr', 'api/nhie', 'api/paranoia', 'custom']
   const ratings = ['pg', 'pg13', 'r']
+  
 
   const [currentQuestion, setCurrentQuestion] = useState("");
 
@@ -53,13 +55,13 @@ export default function GameScreen({ navigation }) {
         <Text style={styles.player}>Player 1</Text>
       </View>
       <View style={styles.questionCard}>
-        <Text>{currentQuestion}</Text>
+        <Text style={styles.question}>{currentQuestion}</Text>
       </View>
-      <Button
+      <MyButton
         title="Generate Question"
         onPress={() => generateQuestion()}
       />
-      <Button
+      <MyButton
         title="Go to Scoreboard"
         onPress={() => navigation.navigate("Scoreboard")}
       />
@@ -77,13 +79,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     paddingLeft: 30,
     paddingRight: 30,
-    marginBottom: 30
+    marginBottom: 30,
+    borderRadius: 20
   },
   player: {
     fontSize: 50
   },
   questionCard: {
     height: 300,
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    width: 300,
+    padding: 40,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginBottom: 30,
+    borderRadius: 30
+  },
+  question: {
+    textAlign: 'center',
+    fontSize: 20
   }
   });

@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import ThemeProvider from '../Theme/ThemeProvider';
-import MyButton from "./MyButton";
-import lightTheme from '../Theme/Light';
-import darkTheme from '../Theme/Dark';
-
+import { useTheme } from "@react-navigation/native";
+import MyButton from "../components/MyButton";
 
 export default function MainMenu({ navigation }) {
-  const [theme, setTheme] = useState('light');
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-  const currentTheme = theme === 'light' ? lightTheme : darkTheme; 
+  const { colors } = useTheme();
 
   return (
-    <ThemeProvider value={{ theme: currentTheme, toggleTheme }}>
-      <View style={[styles.container, {backgroundColor: currentTheme.backgroundColor}]}>
-        <Text style={{color: currentTheme.textColor}}>DrinkOrDare</Text>
+      <View style={[styles.container]}>
+        <Text style={{color: colors.text}}>DrinkOrDare</Text>
         <MyButton
           title="Go to Player Input"
           onPress={() => navigation.navigate("PlayerInput")}
@@ -31,9 +23,9 @@ export default function MainMenu({ navigation }) {
           onPress={() => navigation.navigate("CustomQuestions")}
         />
       </View>
-    </ThemeProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
