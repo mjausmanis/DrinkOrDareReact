@@ -4,6 +4,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useTheme } from "@react-navigation/native";
 import { ThemeContext } from "../App";
 import MyButton from "../components/MyButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Options(props) {
   const [musicOn, setMusicOn] = useState(true);
