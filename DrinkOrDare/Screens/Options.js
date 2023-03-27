@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, Switch } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { ThemeContext } from "../App";
 import MyButton from "../components/MyButton";
