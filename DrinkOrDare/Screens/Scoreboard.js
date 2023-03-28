@@ -34,10 +34,12 @@ export default function Scoreboard({ navigation, props}) {
       borderColor: colors.text
     },
     name: {
+      color: colors.text,
       fontSize: 17,
       marginLeft: 5
     },
     score: {
+      color: colors.text,
       fontSize: 17,
       marginLeft: 'auto',
       marginRight: 5
