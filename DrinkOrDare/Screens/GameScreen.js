@@ -10,6 +10,7 @@ import ParanoiaImage from "../assets/Paranoia.png";
 import CustomImage from "../assets/Custom.png";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomQuestions from './CustomQuestions';
+import BackgroundImages from "../components/BackgroundImages";
 
 
 export default function GameScreen({ navigation }) {
@@ -93,6 +94,10 @@ export default function GameScreen({ navigation }) {
     }
   }
 
+  function goNext() {
+    navigation.navigate("Scoreboard", { playerNames: playerNames, currentPlayer: currentPlayer })
+  }
+
   const styles = StyleSheet.create({
     container: {
         marginTop: 100,
@@ -165,7 +170,7 @@ export default function GameScreen({ navigation }) {
         />
         <MyButton
           title="Go to Scoreboard"
-          onPress={() => navigation.navigate("Scoreboard", { playerNames: playerNames })}
+          onPress={goNext}
         />
       </View>
     </View>
