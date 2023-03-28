@@ -180,11 +180,13 @@ export default function QuestionPick({ navigation }) {
                     <Text style={styles.checkBoxLabel}>R</Text>
                 </View>
             </View>
+            <View style={{ marginTop: 25, flex: 1, alignItems: "center", justifyContent: "center" }}>
             <View style={styles.buttonView}>
                 <MyButton
                     title="Start Game"
                     onPress={saveSelection}
                 />
+            </View>
             </View>
         </View>
     </View>
