@@ -3,11 +3,12 @@ import { View, Text, StyleSheet } from "react-native";
 import MyButton from "../components/MyButton";
 import { useTheme, useRoute } from "@react-navigation/native";
 
-export default function Scoreboard({ navigation }) {
+export default function Scoreboard({ navigation, props}) {
   const { colors } = useTheme();
 
   const route = useRoute();
-  const { playerNames, currentPlayer } = route.params;
+  const { playerNames, playerScores} = route.params;
+
 
   function next(){
     navigation.navigate("GameScreen", {playerNames: playerNames})
@@ -32,12 +33,14 @@ export default function Scoreboard({ navigation }) {
       <View style={{flexDirection: 'column', marginBottom: 20}}>
         {playerNames.map((name, index) => (
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.scoreBoardText} key={index}>{name} </Text>
+            <Text key={index}>{name} - </Text>
+            <Text>{playerScores[index]}</Text>
           </View>
+
         ))}
       </View>
       <MyButton
-        title="Continue"
+        title="Return to the game"
         onPress={next}
       />
     </View>
