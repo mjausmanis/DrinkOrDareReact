@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import MyButton from "../components/MyButton";
+import BackgroundImages from '../components/BackgroundImages'
 
 export default function MainMenu({ navigation }) {
 
@@ -18,7 +19,8 @@ export default function MainMenu({ navigation }) {
       color: colors.text,
       fontSize: 50,
       fontWeight: 'bold',
-      marginBottom: 150
+      marginBottom: 100,
+      textAlign: 'center'
     },
     buttons: {
       width: 50
@@ -27,6 +29,7 @@ export default function MainMenu({ navigation }) {
 
   return (
       <View style={styles.container}>
+        <BackgroundImages></BackgroundImages>
         <Text style={styles.title}>Drink Or Dare</Text>
         <MyButton
           title="Play game"

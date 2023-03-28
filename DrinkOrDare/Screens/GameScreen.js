@@ -11,7 +11,7 @@ import CustomImage from "../assets/Custom.png";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomQuestions from './CustomQuestions';
 import Scoreboard from "./Scoreboard";
-
+import BackgroundImages from "../components/BackgroundImages";
 
 export default function GameScreen({ navigation }) {
 
@@ -153,13 +153,13 @@ function endGame() {
       marginBottom: 30,
       borderRadius: 30,
       borderColor: colors.buttonBackground,
-      borderWidth: 10
+      borderWidth: 5
     },
     questionCard: {
-      height: 280,
+      height: 290,
       backgroundColor: colors.buttonBackground,
-      width: 280,
-      borderRadius: 20,
+      width: 290,
+      borderRadius: 25,
       borderColor: currentColor,
       borderWidth: 10,
       borderTopWidth: 0,

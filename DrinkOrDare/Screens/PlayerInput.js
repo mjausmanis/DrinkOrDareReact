@@ -44,9 +44,10 @@ export default function PlayerInput({ navigation }) {
     },
     title: {
       color: colors.text,
-      fontSize: 30,
+      fontSize: 50,
       fontWeight: "bold",
-      marginBottom: 50
+      marginBottom: 50,
+      textAlign: 'center'
     },
     scroll: {
       maxHeight: 250 
