@@ -219,7 +219,7 @@ function endGame() {
       
 
       </View>
-      <View style={{flexDirection: 'column'}}>
+      <View style={styles.buttons}>
       <MyButton title="Go to scoreboard" onPress={goToScoreboard} />
       <MyButton title="End the game" onPress={endGame} />
       </View>
