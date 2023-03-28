@@ -10,9 +10,7 @@ export default function Scoreboard({ navigation, props}) {
   const { playerNames, playerScores} = route.params;
 
 
-  function next(){
-    navigation.navigate("GameScreen", {playerNames: playerNames})
-  }
+
 
   const styles = StyleSheet.create({
     title: {
@@ -59,10 +57,6 @@ export default function Scoreboard({ navigation, props}) {
           ))}
         </View>
       </ScrollView>
-      <MyButton
-        title="Return to the game"
-        onPress={next}
-      />
     </View>
   );
 }
