@@ -46,8 +46,7 @@ export default function GameScreen({ navigation }) {
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [passAndDrinkCount, setPassAndDrinkCount] = useState(0);
   const [doTheDareCount, setDoTheDareCount] = useState(0);
-  const [playerScores, setPlayerScores] = useState(playerNames.map(() => 0)); // Initialize all scores to zero
-
+  const [playerScores, setPlayerScores] = useState(playerNames.map(() => 0));
   useEffect(() => {
     generateQuestion();
     setCurrentImage(CustomImage);

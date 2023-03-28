@@ -161,7 +161,7 @@ export default function QuestionPick({ navigation }) {
                             thumbColor={colors.text}
                             style={styles.checkbox} value={pgRatingIsChecked} onValueChange={pgRatingSetChecked}
                         />
-                    <Text style={styles.checkBoxLabel}>Easy</Text>
+                    <Text style={styles.checkBoxLabel}>PG</Text>
                 </View>
                 <View style={[styles.checkBoxLine, styles.ratingLine]}>
                     <Switch 
@@ -169,7 +169,7 @@ export default function QuestionPick({ navigation }) {
                             thumbColor={colors.text}
                             style={styles.checkbox} value={pg13RatingIsChecked} onValueChange={pg13RatingSetChecked}
                         />
-                    <Text style={styles.checkBoxLabel}>Normal</Text>
+                    <Text style={styles.checkBoxLabel}>PG-13</Text>
                 </View>
                 <View style={[styles.checkBoxLine, styles.ratingLine]}>
                     <Switch 
@@ -177,7 +177,7 @@ export default function QuestionPick({ navigation }) {
                         thumbColor={colors.text}
                         style={styles.checkbox} value={rRatingIsChecked} onValueChange={rRatingSetChecked}
                     />
-                    <Text style={styles.checkBoxLabel}>Hard</Text>
+                    <Text style={styles.checkBoxLabel}>R</Text>
                 </View>
             </View>
             <View style={{ marginTop: 25, flex: 1, alignItems: "center", justifyContent: "center" }}>
