@@ -74,7 +74,7 @@ export default function GameScreen({ navigation }) {
     }
     endValue = Math.trunc(Math.random() * selectedEnds.length)
     ratingValue = Math.trunc(Math.random() * chosenRatings.length)
-
+    setCurrentPlayer(playerNames[currentPlayer]);
 
     if (selectedEnds[endValue] == 'custom') {
       //take from custom questions
@@ -101,7 +101,7 @@ export default function GameScreen({ navigation }) {
           }
         });
     }
-    setCurrentPlayer(playerNames[currentPlayer]);
+    
   }
 
 function handleDoTheDare() {
