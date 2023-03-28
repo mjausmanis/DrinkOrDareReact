@@ -87,9 +87,13 @@ export default function GameScreen({ navigation }) {
       fetch(`https://api.truthordarebot.xyz/${selectedEnds[endValue]}?rating=${chosenRatings[ratingValue]}`)
         .then(response => response.json())
         .then(data => {
-          setCurrentQuestion(data.question);
-          setCurrentImage(Images[data.type])
-          setCurrentColor(borderColors[data.type])
+          if (data.question) {
+            setCurrentQuestion(data.question);
+            setCurrentImage(Images[data.type])
+            setCurrentColor(borderColors[data.type])
+          } else {
+            setCurrentQuestion("Slow down, you asked too many questions in too short a time. Wait 5 seconds!")
+          }
         });
     }
   }
