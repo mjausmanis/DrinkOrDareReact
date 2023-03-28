@@ -3,11 +3,11 @@ import { View, Text } from "react-native";
 import MyButton from "../components/MyButton";
 import { useTheme, useRoute } from "@react-navigation/native";
 
-export default function Scoreboard({ navigation }) {
+export default function Scoreboard({ navigation, props}) {
   const { colors } = useTheme();
 
   const route = useRoute();
-  const { playerNames } = route.params;
+  const { playerNames, playerScores} = route.params;
 
 
   function next(){
@@ -20,12 +20,14 @@ export default function Scoreboard({ navigation }) {
       <View style={{flexDirection: 'column'}}>
         {playerNames.map((name, index) => (
           <View style={{flexDirection: 'row'}}>
-            <Text key={index}>{name}</Text>
+            <Text key={index}>{name} - </Text>
+            <Text>{playerScores[index]}</Text>
           </View>
+
         ))}
       </View>
       <MyButton
-        title="Continue"
+        title="Return to the game"
         onPress={next}
       />
     </View>

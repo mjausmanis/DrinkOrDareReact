@@ -10,6 +10,7 @@ import ParanoiaImage from "../assets/Paranoia.png";
 import CustomImage from "../assets/Custom.png";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomQuestions from './CustomQuestions';
+import Scoreboard from "./Scoreboard";
 
 
 export default function GameScreen({ navigation }) {
@@ -43,11 +44,16 @@ export default function GameScreen({ navigation }) {
   const [currentImage, setCurrentImage] = useState("");
   const [currentColor, setCurrentColor] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState("");
+  const [passAndDrinkCount, setPassAndDrinkCount] = useState(0);
+  const [doTheDareCount, setDoTheDareCount] = useState(0);
+  const [playerScores, setPlayerScores] = useState(playerNames.map(() => 0)); // Initialize all scores to zero
+
   useEffect(() => {
     generateQuestion();
     setCurrentImage(CustomImage);
-    setCurrentPlayer(0)
+    setCurrentPlayer(0);
   }, []);
+  
 
 
   async function generateQuestion() {
@@ -91,7 +97,38 @@ export default function GameScreen({ navigation }) {
           setCurrentColor(borderColors[data.type])
         });
     }
+    setCurrentPlayer(playerNames[currentPlayer]);
   }
+
+function handleDoTheDare() {
+  const newScores = [...playerScores];
+  newScores[currentPlayer] = newScores[currentPlayer] + 1;
+  setPlayerScores(newScores);
+  setDoTheDareCount(doTheDareCount + 1);
+  generateQuestion();
+  setCurrentPlayer((currentPlayer + 1) % playerNames.length);
+}
+
+function handlePassAndDrink() {
+  const newScores = [...playerScores];
+  newScores[currentPlayer] = newScores[currentPlayer] - 1;
+  setPlayerScores(newScores);
+  setPassAndDrinkCount(passAndDrinkCount + 1);
+  generateQuestion();
+  setCurrentPlayer((currentPlayer + 1) % playerNames.length);
+}
+
+function goToScoreboard() {
+  navigation.navigate("Scoreboard", {
+    playerNames: playerNames,
+    playerScores: playerScores
+  });
+}
+
+function endGame() {
+  setPlayerScores(Array(playerNames.length).fill(0));
+  navigation.navigate('MainMenu');
+}
 
   const styles = StyleSheet.create({
     container: {
@@ -158,15 +195,29 @@ export default function GameScreen({ navigation }) {
           <Text style={styles.question}>{currentQuestion}</Text>
         </View>
       </View>
+      
       <View style={styles.buttons}>
-        <MyButton
-          title="Reroll"
-          onPress={() => generateQuestion()}
-        />
-        <MyButton
-          title="Go to Scoreboard"
-          onPress={() => navigation.navigate("Scoreboard", { playerNames: playerNames })}
-        />
+      <MyButton
+          title="Do the dare"
+          onPress={() => {
+            handleDoTheDare();
+          }}
+          style={{ backgroundColor: '#5E17EB' }}
+      />
+      <MyButton
+          title="Pass & Drink"
+          onPress={() => {
+            handlePassAndDrink();
+          }}
+          style={{ backgroundColor: '#5E17EB' }}
+      />  
+      
+      
+
+      </View>
+      <View style={{flexDirection: 'column'}}>
+      <MyButton title="Go to scoreboard" onPress={goToScoreboard} />
+      <MyButton title="End the game" onPress={endGame} />
       </View>
     </View>
   );
