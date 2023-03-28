@@ -33,7 +33,6 @@ export default function Scoreboard({ navigation }) {
         {playerNames.map((name, index) => (
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.scoreBoardText} key={index}>{name} </Text>
-            <Text style={styles.scoreBoardText}> {scores[index]} </Text>
           </View>
         ))}
       </View>

@@ -4,6 +4,7 @@ import { useTheme } from "@react-navigation/native";
 import { ThemeContext } from "../App";
 import MyButton from "../components/MyButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import BackgroundImages from "../components/BackgroundImages";
 
 export default function Options(props) {
   const [musicOn, setMusicOn] = useState(true);
@@ -54,6 +55,7 @@ export default function Options(props) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <BackgroundImages />
       <Text style={{color: colors.text, fontSize: 50, fontWeight: "bold", marginBottom: 50}}>Options</Text>
       <MyButton 
         title="Switch theme"
